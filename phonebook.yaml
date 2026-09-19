@@ -1,13 +1,16 @@
 # Довідник Вільногірська.
-# Поля довіри для кожної позиції:
-#   source        — звідки номер: directory (міський довідник) | chat (чат спільноти)
-#   recommended   — скільки різних людей незалежно називали цей номер у чаті
-#   last_seen     — дата останньої згадки в чаті
-#   verified_at   — дата, коли номер набрали і він підтвердився. Ставиться ВРУЧНУ.
-#                   Додайте рядок verified_at: "2026-09-19" — і позиція отримає
-#                   зелену позначку «Перевірено» в застосунку.
-#   verified_by   — хто перевірив (необов'язково)
-#   broken: true  — номер не відповідає / більше не діє
+#
+# У кожної позиції є рівно одне поле стану:
+#
+#   verified: true   ✅ Перевірено — передзвонили і підтвердили, що людина
+#                       або заклад справді цим займається.
+#   verified: false  ○ Не перевірено — номер є, але ніхто його не підтверджував.
+#
+# Щоб підтвердити номер — змініть false на true. Більше нічого робити не треба.
+# За бажанням можна дописати, хто і коли перевіряв:
+#   verified: true
+#   verified_at: "2026-09-19"
+#   verified_by: "Денис"
 
 categories:
   - name: "Екстренні та безпека"
@@ -15,1026 +18,680 @@ categories:
     items:
       - title: "Вільногірське відділення поліції"
         phones: ["0689230402", "0504563958"]
-        source: directory
+        verified: true
       - title: "Військовий комісаріат"
         phones: ["0983162061"]
-        source: directory
+        verified: true
 
   - name: "Медицина"
     icon: "🏥"
     items:
       - title: "Вільногірська ЦМЛ (Лікарня)"
         phones: ["0682680116"]
-        source: directory
-        recommended: 9
-        last_seen: "2026-08-26"
+        verified: true
       - title: "КП «Вільногірський МЦ ПМСД»"
         phones: ["0964226644"]
-        source: directory
-        recommended: 6
-        last_seen: "2026-08-26"
+        verified: true
       - title: "Амбулаторія №2 КП"
         phones: ["0962285047"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-03-03"
+        verified: true
       - title: "Стоматологічне відділення ЦМЛ"
         phones: ["0972272546"]
-        source: directory
-        recommended: 3
-        last_seen: "2026-07-16"
+        verified: true
       - title: "Бюро судово-медичної експертизи"
         phones: ["0966346787"]
-        source: directory
+        verified: true
       - title: "Державна лікарня ветеринарної медицини"
         phones: ["0676829668"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-05-20"
+        verified: true
       - title: "Стоматологія біля нового ринку"
         phones: ["0679419199"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-09-16"
+        verified: true
       - title: "Стоматолог Гладков"
         phones: ["0973848399"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-06-16"
+        verified: true
       - title: "Стоматологія (Нова лікарня)"
         phones: ["0972272546"]
-        source: directory
-        recommended: 3
-        last_seen: "2026-07-16"
+        verified: true
       - title: "Стоматолог Панін Віталій Ігорович"
         phones: ["0972272546"]
-        source: directory
-        recommended: 3
-        last_seen: "2026-07-16"
+        verified: true
       - title: "Стоматолог Василенко Тетяна Олександрівна"
         phones: ["0976678902"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-16"
+        verified: true
       - title: "Стоматолог Данелюк Борис Олександрович"
         phones: ["0976137082"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-16"
+        verified: true
       - title: "Стоматологія Dentakary (15 бульвар)"
         phones: ["0682020320"]
-        source: directory
-        recommended: 6
-        last_seen: "2026-08-18"
+        verified: true
       - title: "Стоматолог Ірина Леонідівна (вул. Захисників України, 12а)"
         phones: ["0677141896"]
-        source: directory
-        recommended: 3
-        last_seen: "2026-06-16"
+        verified: true
       - title: "Клініка «Є Лікар» — реєстратура (навпроти технікуму)"
         phones: ["0979414248", "0664512023"]
-        source: chat
-        recommended: 8
-        last_seen: "2026-09-10"
+        verified: false
       - title: "Приймальний покій нової лікарні"
         phones: ["0675668051"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-12"
+        verified: false
       - title: "Терапевтичне відділення нової лікарні"
         phones: ["0967603315"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-23"
+        verified: false
       - title: "Сімейний лікар Сіденко О. В."
         phones: ["0679042701"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-09-14"
+        verified: false
       - title: "Сімейний лікар Усенко Олена Владиславівна"
         phones: ["0988227697"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-06-25"
+        verified: false
       - title: "Лікар Фільова Олена Олександрівна"
         phones: ["0984920304"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-01"
+        verified: false
       - title: "Хірург Нетребенко М. М."
         phones: ["0987094641"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-03"
+        verified: false
       - title: "Аптека «Фармація» (у новій лікарні)"
         phones: ["0675550231", "0970728964"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-09"
+        verified: false
       - title: "УЗД — Ірина (Верхньодніпровськ)"
         phones: ["0981270452"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-06-03"
+        verified: false
       - title: "Реєстратура лікарні, Верхньодніпровськ"
         phones: ["0934944771"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-13"
+        verified: false
       - title: "Реєстратура лікарні, П'ятихатки"
         phones: ["0986115996", "0981085548"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-20"
+        verified: false
       - title: "Офтальмологічне відділення, Кам'янське"
         phones: ["0737775161"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-31"
+        verified: false
 
   - name: "Ветеринарія"
     icon: "🐾"
     items:
       - title: "Ветеринар-хірург Андрій Михайлович"
         phones: ["0503420604"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-12"
+        verified: false
       - title: "Ветеринар Валерій"
         phones: ["0973456030"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-20"
+        verified: false
       - title: "Уколи та крапельниці тваринам — Оля"
         phones: ["0688832551"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-21"
+        verified: false
       - title: "Ветеринар Зоя Борисівна (П'ятихатки)"
         phones: ["0973886550"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-30"
+        verified: false
       - title: "Ветклініка «Єнот» (Жовті Води)"
         phones: ["0953166140"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-30"
+        verified: false
       - title: "Ветклініка «Чотири Лапи» (Жовті Води)"
         phones: ["0669332181"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-30"
+        verified: false
       - title: "Стрижка собак — Наталія"
         phones: ["0679615318"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-05"
+        verified: false
 
   - name: "Комунальні служби"
     icon: "🛠️"
     items:
       - title: "«Газмережі»"
         phones: ["0983002888", "0933002888"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-04-02"
+        verified: true
       - title: "Вільногірські розподільні електричні мережі (ЦЕК)"
         phones: ["0674825019"]
-        source: directory
+        verified: true
       - title: "КП «УК «Жилкомсервіс»"
         phones: ["0975948695"]
-        source: directory
+        verified: true
       - title: "КП «Жилсервіс»"
         phones: ["0565335135"]
-        source: directory
+        verified: true
       - title: "КП «Аварійна служба»"
         phones: ["0676417910"]
-        source: directory
-        recommended: 5
-        last_seen: "2026-06-01"
+        verified: true
       - title: "Збут холодної води (передача показників, прийом 1–5 числа)"
         phones: ["0686309011", "0506157933"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-05-02"
+        verified: false
       - title: "Передача показників газового лічильника (потрібен особовий рахунок)"
         phones: ["0800303104"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-07"
+        verified: false
       - title: "ЦЕК Вільногірськ — гаряча лінія"
         phones: ["0800300015"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-19"
+        verified: false
       - title: "Гаряча лінія електропостачання"
         phones: ["0800301568", "0637909900"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-19"
+        verified: false
       - title: "Викачування вигрібних ям"
         phones: ["0974969692"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-26"
+        verified: false
 
   - name: "Державні установи"
     icon: "🏛️"
     items:
       - title: "ЦНАП м. Вільногірськ"
         phones: ["0672110082"]
-        source: directory
-        recommended: 3
-        last_seen: "2026-05-25"
+        verified: true
       - title: "Виконавчий комітет міської ради"
         phones: ["0672110208", "0800300172"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-02-18"
+        verified: true
       - title: "Вільногірський міський суд"
         phones: ["0565341179"]
-        source: directory
+        verified: true
       - title: "Сектор ГУ ДМС (Паспортний)"
         phones: ["0964957930"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-01-16"
+        verified: true
       - title: "Управління Пенсійного фонду"
         phones: ["0951533887", "0972980143"]
-        source: directory
-        recommended: 8
-        last_seen: "2026-09-14"
+        verified: true
       - title: "Департамент соціально-гуманітарної політики"
         phones: ["0661163476"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-04-09"
+        verified: true
       - title: "Управління соціального захисту (Собез)"
         phones: ["0637686195"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-24"
+        verified: false
       - title: "Відділ соціальних виплат (у 5-му садочку)"
         phones: ["0979336199"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-05"
+        verified: false
       - title: "Служба у справах дітей"
         phones: ["0971551456"]
-        source: directory
+        verified: true
       - title: "Міський центр зайнятості"
         phones: ["0676348851"]
-        source: directory
+        verified: true
       - title: "Державна нотаріальна контора"
         phones: ["0565352760"]
-        source: directory
+        verified: true
       - title: "Вільногірський РАЦС (ЗАГС)"
         phones: ["0567672085"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-01-30"
+        verified: false
       - title: "РАЦС (ЗАГС), П'ятихатки"
         phones: ["0567672126"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-13"
+        verified: false
       - title: "БТІ"
         phones: ["0679945190"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-16"
+        verified: false
       - title: "Черговий по ТЦК (Верхньодніпровськ)"
         phones: ["0677253096"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-01"
+        verified: false
 
   - name: "Освітні заклади"
     icon: "🎓"
     items:
       - title: "Вільногірський фаховий коледж"
         phones: ["0565351546"]
-        source: directory
+        verified: true
       - title: "ДПТНЗ «Західно-Дніпровський центр ПТО»"
         phones: ["0689657240"]
-        source: directory
+        verified: true
       - title: "Ліцей №2"
         phones: ["0970884363"]
-        source: directory
+        verified: true
       - title: "Ліцей №3"
         phones: ["0980432212"]
-        source: directory
+        verified: true
       - title: "Ліцей №4"
         phones: ["0673163304"]
-        source: directory
+        verified: true
       - title: "Ліцей №5"
         phones: ["0930365431", "0689528669"]
-        source: directory
+        verified: true
 
   - name: "Дитячі садки"
     icon: "🧸"
     items:
       - title: "ЦРД №2 “Веселі дзвіночки”"
         phones: ["0975262203", "0950249083"]
-        source: directory
+        verified: true
       - title: "ДНЗ №3 “Веселка”"
         phones: ["0966054126"]
-        source: directory
+        verified: true
       - title: "ДНЗ №4 «Ромашка»"
         phones: ["0676355444"]
-        source: directory
+        verified: true
       - title: "ДНЗ №6 “Сонечко”"
         phones: ["0963761655"]
-        source: directory
+        verified: true
       - title: "ДНЗ №8 “Білочка”"
         phones: ["0686577316", "0986348849"]
-        source: directory
+        verified: true
 
   - name: "Таксі"
     icon: "🚕"
     items:
       - title: "Таксі OnTaxi"
         phones: ["2000"]
-        source: directory
+        verified: false
       - title: "Таксі «Марсель»"
         phones: ["0980110119"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Таксі «Люкс»"
         phones: ["0973393333"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Таксі «Інтер»"
         phones: ["0678027067"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Таксі «Нова»"
         phones: ["0675236727"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Таксі «Флеш»"
         phones: ["0985872726"]
-        source: directory
-        recommended: 2
-        last_seen: "2026-06-23"
+        verified: true
       - title: "Таксі «Еліт»"
         phones: ["0684054460"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Таксі «GOLD»"
         phones: ["0965227645"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-06-15"
+        verified: true
       - title: "Вантажне таксі"
         phones: ["0675234373"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-22"
+        verified: false
       - title: "Вантажне таксі на Дніпро — Сергій"
         phones: ["0670103853"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-12"
+        verified: false
 
   - name: "Перевезення"
     icon: "🚚"
     items:
       - title: "Вантажні перевезення з вантажниками — Олександр"
         phones: ["0976516580"]
-        source: chat
-        recommended: 7
-        last_seen: "2026-09-12"
+        verified: false
       - title: "Вантажні перевезення — Сергій"
         phones: ["0968573092"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-09-11"
+        verified: false
       - title: "Вантажні перевезення та вантажники — Сергій"
         phones: ["0989914141"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-05"
+        verified: false
       - title: "Вантажні перевезення — Дмитро"
         phones: ["0988897804"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-25"
+        verified: false
       - title: "Вантажні перевезення"
         phones: ["0682664686"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-03"
+        verified: false
       - title: "Евакуатор — Саня"
         phones: ["0686930234"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-07"
+        verified: false
       - title: "Маршрутка Вільногірськ — Дніпро (водій)"
         phones: ["0968223601"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-09"
+        verified: false
       - title: "Маршрутка на Лихівку (водій)"
         phones: ["0975498025"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-28"
+        verified: false
       - title: "Маршрутка до Кривого Рогу"
         phones: ["0759757260"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-06-19"
+        verified: false
       - title: "Автовокзал, Дніпро"
         phones: ["0503121110"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-06-29"
+        verified: false
       - title: "Залізничний вокзал, Дніпро"
         phones: ["0567934826"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-05"
+        verified: false
 
   - name: "Авто"
     icon: "🚗"
     items:
       - title: "Автоелектрик, автоключник — Сергій"
         phones: ["0967839583"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-16"
+        verified: false
       - title: "Автоелектрик — Миша Литвин"
         phones: ["0984650626"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-05"
+        verified: false
       - title: "Автоелектрик — Діма"
         phones: ["0976361662"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-08"
+        verified: false
       - title: "Ремонт карбюраторів — Васильович"
         phones: ["0986355811"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-06"
+        verified: false
       - title: "Ремонт автомобілів — Лінєнко"
         phones: ["0673401414"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-15"
+        verified: false
       - title: "Заміна лобового скла"
         phones: ["0674106061"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-16"
+        verified: false
       - title: "Автомийка (на виїзді)"
         phones: ["0973587131"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-21"
+        verified: false
       - title: "Магазин автомобільних шин (біля бані та старого ринку)"
         phones: ["0985405405"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-25"
+        verified: false
       - title: "Автошкола"
         phones: ["0680306359"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-04-07"
+        verified: false
 
   - name: "Електрика та сантехніка"
     icon: "💡"
     items:
       - title: "Електрик — Андрій"
         phones: ["0983502290"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-11"
+        verified: false
       - title: "Електрик — Володимир"
         phones: ["0982079391", "0982049391"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-28"
+        verified: false
       - title: "Електрик (люстри, розетки, вимикачі)"
         phones: ["0971364157"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-26"
+        verified: false
       - title: "Електрики («Альтаір», 2-й поверх, ліве крило)"
         phones: ["0956535200"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-06"
+        verified: false
       - title: "Перенесення електролічильника із заміною пломб — Олександр"
         phones: ["0962259056"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-12"
+        verified: false
       - title: "Сантехнік Віталій"
         phones: ["0987063967"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-30"
+        verified: false
       - title: "Сантехніка, опалення, пайка труб — Юра Черниш"
         phones: ["0964030713"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-18"
+        verified: false
       - title: "Сантехнік"
         phones: ["0974056644"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-22"
+        verified: false
 
   - name: "Газ та опалення"
     icon: "🔥"
     items:
       - title: "Ремонт газових котлів — Петро"
         phones: ["0679850679"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-03-06"
+        verified: false
       - title: "«Укрдемсервіс» — газові котли"
         phones: ["0675604883"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-23"
+        verified: false
       - title: "Встановлення газового опалення — Максим"
         phones: ["0987871145"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-01"
+        verified: false
       - title: "Майстер з газових плит — Володя"
         phones: ["0987673554"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-18"
+        verified: false
 
   - name: "Ремонт техніки"
     icon: "🔧"
     items:
       - title: "Ремонт пральних машин — Олександр"
         phones: ["0977072464"]
-        source: chat
-        recommended: 4
-        last_seen: "2026-08-13"
+        verified: false
       - title: "Ремонт пральних машин — Едуард"
         phones: ["0989659251"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-05-27"
+        verified: false
       - title: "Ремонт холодильників — Олександр"
         phones: ["0675664551"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-08"
+        verified: false
       - title: "Ремонт холодильників — Руслан"
         phones: ["0965244100"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-16"
+        verified: false
       - title: "Ремонт холодильників і пральних машин"
         phones: ["0687992061"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-27"
+        verified: false
       - title: "Ремонт генераторів — Роман"
         phones: ["0980077902"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-02-12"
+        verified: false
       - title: "Ремонт телевізорів — Єгор"
         phones: ["0967839818"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-29"
+        verified: false
       - title: "Ремонт годинників — Віктор"
         phones: ["0967854175"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-02-24"
+        verified: false
       - title: "Ремонт швейних машин — Олександр Михайлович"
         phones: ["0671668771"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-12"
+        verified: false
       - title: "Ремонт швейних машин"
         phones: ["0688688652"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-12"
+        verified: false
       - title: "Встановлення кондиціонерів — Жорик"
         phones: ["0976861849"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-26"
+        verified: false
       - title: "Чистка кондиціонерів — Сергій"
         phones: ["0673237171"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-30"
+        verified: false
       - title: "Ювелір Костя (паяння золота)"
         phones: ["0981207008"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-05-28"
+        verified: false
       - title: "Ювелір"
         phones: ["0686685520"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-05-26"
+        verified: false
       - title: "«Терабайт» — комп'ютерна техніка"
         phones: ["0956448994"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-04-07"
+        verified: false
       - title: "Опресування наконечників гідравлічним пресом — Крюков"
         phones: ["0672003420"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-26"
+        verified: false
 
   - name: "Будівництво та ремонт"
     icon: "🧱"
     items:
       - title: "Перетяжка москітних сіток — Володимир"
         phones: ["0672548620"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-17"
+        verified: false
       - title: "Перетяжка меблів — Андрій"
         phones: ["0671461048"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-04"
+        verified: false
       - title: "Перетяжка диванів"
         phones: ["0679150964"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-04"
+        verified: false
       - title: "Виготовлення корпусних меблів — Олександр"
         phones: ["0975797145"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-11"
+        verified: false
       - title: "Виготовлення меблів"
         phones: ["0675607525"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-25"
+        verified: false
       - title: "Столяр Толя"
         phones: ["0987540875"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-17"
+        verified: false
       - title: "Зварювальні роботи"
         phones: ["0987445640"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-29"
+        verified: false
       - title: "Зварювальник"
         phones: ["0967473071"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-24"
+        verified: false
       - title: "Виготовлення воріт — Олександр"
         phones: ["0967354368"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-22"
+        verified: false
       - title: "Виготовлення воріт — Серьога Процан"
         phones: ["0975242777"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-20"
+        verified: false
       - title: "Шпаклювання стін — Аня"
         phones: ["0988678635"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-02"
+        verified: false
       - title: "Відкоси на вікнах"
         phones: ["0680052500"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-27"
+        verified: false
       - title: "Натяжні стелі — Олександр"
         phones: ["0987172363"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-04"
+        verified: false
       - title: "Утеплення фасадів"
         phones: ["0981669966"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-06"
+        verified: false
       - title: "Висотні роботи, ремонт даху"
         phones: ["0980847526"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-28"
+        verified: false
       - title: "Демонтажні роботи — Юра"
         phones: ["0967839943"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-23"
+        verified: false
       - title: "Пічник Владислав"
         phones: ["0506300772"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-07"
+        verified: false
       - title: "Пічник"
         phones: ["0965812073"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-10"
+        verified: false
       - title: "Ремонт домофонів і під'їзних дверей (Кам'янське)"
         phones: ["0982416145"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-07-29"
+        verified: false
       - title: "Оранка городу мотоблоком — Володимир"
         phones: ["0971815747"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-21"
+        verified: false
 
   - name: "Побутові послуги"
     icon: "🧺"
     items:
       - title: "Прання килимів, хімчистка"
         phones: ["0509528139"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-09-12"
+        verified: false
       - title: "Прання килимів"
         phones: ["0988627302"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-15"
+        verified: false
       - title: "Пральня (вул. Захисників, гуртожиток)"
         phones: ["0983363735"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-10"
+        verified: false
       - title: "Клінінг «Чистюля» Вільногірськ"
         phones: ["0505607927"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-16"
+        verified: false
       - title: "Чистка та реставрація подушок (щодня, крім неділі)"
         phones: ["0965068636"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-09-02"
+        verified: false
       - title: "Чистка подушок"
         phones: ["0962460646"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-12"
+        verified: false
       - title: "Ремонт взуття, виготовлення ключів (б. Миру, 11)"
         phones: ["0962087133"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-13"
+        verified: false
       - title: "Швець"
         phones: ["0973809417"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-13"
+        verified: false
       - title: "Фотограф «Кодак» (11 бульвар)"
         phones: ["0674594258"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-10"
+        verified: false
       - title: "Ритуальні послуги — Вікторія"
         phones: ["0973737676"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-11"
+        verified: false
       - title: "Ритуальні послуги (вул. Привокзальна)"
         phones: ["0963797878"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-12"
+        verified: false
       - title: "Ритуальні послуги (біля «Варуса»)"
         phones: ["0679323640"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-08"
+        verified: false
       - title: "Баня (колишня «Петровича»)"
         phones: ["0679677536"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-11"
+        verified: false
       - title: "Конюшня, верхова їзда"
         phones: ["0678110931"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-11"
+        verified: false
       - title: "Червоний Хрест (приймання речей)"
         phones: ["0675521566"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-05"
+        verified: false
       - title: "Батюшка, церква на 15 бульварі"
         phones: ["0969202017"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-06"
+        verified: false
 
   - name: "Юристи та нотаріуси"
     icon: "⚖️"
     items:
       - title: "Приватний нотаріус Жиганова Лариса Сергіївна (бульвар)"
         phones: ["0952555380"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-08-11"
+        verified: false
       - title: "Нотаріус (бульв. Миру, 15)"
         phones: ["0685176119"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-04-28"
+        verified: false
       - title: "Нотаріус, Кам'янське"
         phones: ["0685878335"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-11"
+        verified: false
       - title: "Адвокат Точілін Микита"
         phones: ["0984386655"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-07"
+        verified: false
       - title: "Адвокат Шевчук Олег Мануїлович"
         phones: ["0936460766"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-07"
+        verified: false
       - title: "Адвокат (Вільногірськ)"
         phones: ["0966405043"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-09"
+        verified: false
 
   - name: "Інтернет та зв'язок"
     icon: "📶"
     items:
       - title: "«Медіаком» — офіс"
         phones: ["0679097911"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-02-27"
+        verified: false
       - title: "«Медіаком» — технічна підтримка"
         phones: ["0687303030"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-02-27"
+        verified: false
       - title: "Київстар — технічна підтримка"
         phones: ["0800300460", "0800300466"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-12"
+        verified: false
       - title: "Магазин Київстар"
         phones: ["0675775757"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-25"
+        verified: false
       - title: "Укртелеком — гаряча лінія"
         phones: ["0800506800"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-15"
+        verified: false
 
   - name: "Магазини"
     icon: "🛒"
     items:
       - title: "Магазин «Гранд» — відділ друку та копій (Наталія)"
         phones: ["0979636152"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-08-10"
+        verified: false
       - title: "Магазин «Руді»"
         phones: ["0675457575"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-14"
+        verified: false
       - title: "Магазин «Домовик» — Олеся"
         phones: ["0672881138"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-17"
+        verified: false
       - title: "Магазин «Три Кіти» — власник"
         phones: ["0971200478"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-20"
+        verified: false
 
   - name: "Кафе та їжа"
     icon: "🍕"
     items:
       - title: "Піцерія «Маркетопт»"
         phones: ["0986730733"]
-        source: chat
-        recommended: 3
-        last_seen: "2026-05-23"
+        verified: false
       - title: "Кафе «Петрович»"
         phones: ["0681440933"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-12"
+        verified: false
       - title: "Бургерна"
         phones: ["0507294728", "0681001451"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-04"
+        verified: false
 
   - name: "Доставка"
     icon: "📦"
     items:
       - title: "Дрова з доставкою"
         phones: ["0672244141", "0682426324"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-29"
+        verified: false
       - title: "Дрова — Юра"
         phones: ["0684552764"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-01-18"
+        verified: false
       - title: "Доставка питної води"
         phones: ["0985304054"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-04-07"
+        verified: false
 
   - name: "Страхування"
     icon: "🛡️"
     items:
       - title: "Страхова компанія («Альтаір») — Аліна"
         phones: ["0677514648"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-16"
+        verified: false
       - title: "СК «Авангард»"
         phones: ["0962584904"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-08-06"
+        verified: false
       - title: "СК «FORMA»"
         phones: ["0681090929"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-02-11"
+        verified: false
 
   - name: "Прийом вторсировини"
     icon: "♻️"
     items:
       - title: "Прийом металобрухту — Володимир"
         phones: ["0989173536"]
-        source: chat
-        recommended: 2
-        last_seen: "2026-08-15"
+        verified: false
       - title: "Прийом металобрухту — Володимир (другий пункт)"
         phones: ["0678559472"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-07-10"
+        verified: false
       - title: "Прийом металобрухту (виїзд на Лихівку)"
         phones: ["0673059800"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-05-01"
+        verified: false
       - title: "Приймання макулатури (за новим ринком)"
         phones: ["0972732474"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-09-04"
+        verified: false
 
   - name: "Інше"
     icon: "📌"
     items:
       - title: "Укрпошта Вільногірська"
         phones: ["0565351636", "0501608388"]
-        source: directory
-        recommended: 1
-        last_seen: "2026-02-06"
+        verified: true
       - title: "КЗ спортивний комплекс «Авангард»"
         phones: ["0677249815"]
-        source: directory
+        verified: true
       - title: "Рада ветеранів"
         phones: ["0565352799"]
-        source: directory
+        verified: true
       - title: "Відділ кадрів ГМК"
         phones: ["0952300882"]
-        source: chat
-        recommended: 1
-        last_seen: "2026-03-25"
+        verified: false

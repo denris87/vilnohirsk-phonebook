@@ -11,92 +11,65 @@ app.use(cors());
 // Тут мы будем хранить готовый справочник
 let phonebookData = { categories: [] };
 
-// --- Уровни доверия -------------------------------------------------------
-// Каждая позиция справочника получает поле trust, которое фронтенд рисует
-// значком рядом с номером. Уровень выводится из данных, руками ничего
-// дублировать не надо.
+// --- Состояние номера -----------------------------------------------------
+// Ровно два состояния, третьего нет:
 //
-//   broken: true                -> ⛔ не работает
-//   verified_at: "2026-09-19"   -> ✅ проверено (звонили, номер живой)
-//   source: directory           -> 📋 из городского справочника
-//   recommended >= 3            -> 👥 советовали N человек
-//   иначе                       -> 💬 из чата, не проверено
-const TRUST_LEVELS = {
-  broken:    { level: 'broken',    icon: '⛔', color: '#f87171', label: 'Не відповідає' },
-  verified:  { level: 'verified',  icon: '✅', color: '#34d399', label: 'Перевірено' },
-  directory: { level: 'directory', icon: '📋', color: '#60a5fa', label: 'З міського довідника' },
-  community: { level: 'community', icon: '👥', color: '#fbbf24', label: 'Радить спільнота' },
-  chat:      { level: 'chat',      icon: '💬', color: '#94a3b8', label: 'З чату, не перевірено' },
+//   verified: true   ✅ Перевірено   — передзвонили, человек/заведение
+//                                      действительно этим занимается
+//   verified: false  ○  Не перевірено — номер есть, но никто не подтверждал
+//
+// Фронтенду не надо ничего вычислять: в поле status приходят готовые
+// label, icon и цвета.
+const STATUS = {
+  verified: {
+    verified: true,
+    key: 'verified',
+    icon: '✓',
+    label: 'Перевірено',
+    color: '#34d399',
+    background: 'rgba(52, 211, 153, 0.12)',
+    border: 'rgba(52, 211, 153, 0.35)',
+    hint: 'Ми передзвонили: людина справді цим займається',
+  },
+  unverified: {
+    verified: false,
+    key: 'unverified',
+    icon: '○',
+    label: 'Не перевірено',
+    color: '#94a3b8',
+    background: 'rgba(148, 163, 184, 0.10)',
+    border: 'rgba(148, 163, 184, 0.25)',
+    hint: 'Номер ще ніхто не підтверджував',
+  },
 };
-
-const MIN_RECOMMENDATIONS = 3;
 
 function formatDate(value) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
   return m ? `${m[3]}.${m[2]}.${m[1]}` : null;
 }
 
-// 1 людина, 2-4 людини, 5+ людей
-function people(n) {
-  const tens = n % 100;
-  const ones = n % 10;
-  if (tens >= 11 && tens <= 14) return `${n} людей`;
-  if (ones === 1) return `${n} людина`;
-  if (ones >= 2 && ones <= 4) return `${n} людини`;
-  return `${n} людей`;
+function buildStatus(item) {
+  if (!item.verified) return STATUS.unverified;
+
+  // Дата и автор проверки необязательны — если их указали, уточняем подсказку.
+  const on = formatDate(item.verified_at);
+  const by = item.verified_by;
+  if (!on && !by) return STATUS.verified;
+
+  const details = [on && `перевірено ${on}`, by && `перевірив(ла) ${by}`]
+    .filter(Boolean).join(', ');
+  return { ...STATUS.verified, hint: `Людина справді цим займається — ${details}` };
 }
 
-// Возвращает готовый к отрисовке значок: label, icon, color и короткое
-// пояснение, которое можно показать в тултипе.
-function buildTrust(item) {
-  if (item.broken) {
-    return { ...TRUST_LEVELS.broken, hint: 'Спільнота повідомила, що номер не діє' };
-  }
-
-  const verifiedOn = formatDate(item.verified_at);
-  if (verifiedOn) {
-    const by = item.verified_by ? `, ${item.verified_by}` : '';
-    return {
-      ...TRUST_LEVELS.verified,
-      label: `Перевірено ${verifiedOn}`,
-      hint: `Номер набрали і він підтвердився ${verifiedOn}${by}`,
-    };
-  }
-
-  const seenOn = formatDate(item.last_seen);
-  const seenHint = seenOn ? ` Востаннє згадували ${seenOn}.` : '';
-  const recommended = Number(item.recommended) || 0;
-
-  if (item.source === 'directory') {
-    return { ...TRUST_LEVELS.directory, hint: `Контакт із міського довідника.${seenHint}` };
-  }
-
-  if (recommended >= MIN_RECOMMENDATIONS) {
-    return {
-      ...TRUST_LEVELS.community,
-      label: `Радить ${people(recommended)}`,
-      hint: `${people(recommended)} незалежно називали цей номер у чаті.${seenHint}`,
-    };
-  }
-
-  const who = recommended === 1 ? 'Одна людина порадила' : `${people(recommended)} порадили`;
-  return {
-    ...TRUST_LEVELS.chat,
-    hint: recommended ? `${who} цей номер у чаті. Ніхто не передзвонював.${seenHint}`
-                      : 'Номер з чату, не підтверджений.',
-  };
-}
-
-// Раскладывает сырой YAML в то, что отдаём приложению: те же поля плюс trust
-// у каждой позиции и сводка по уровням.
+// Отдаём те же поля, что были, плюс status у каждой позиции и сводку meta.
 function decorate(raw) {
-  const totals = {};
+  let verified = 0;
   const categories = (raw && raw.categories ? raw.categories : []).map((category) => ({
     ...category,
     items: (category.items || []).map((item) => {
-      const trust = buildTrust(item);
-      totals[trust.level] = (totals[trust.level] || 0) + 1;
-      return { ...item, trust };
+      const status = buildStatus(item);
+      if (status.verified) verified += 1;
+      return { ...item, verified: status.verified, status };
     }),
   }));
 
@@ -108,7 +81,8 @@ function decorate(raw) {
       items,
       phones: categories.reduce(
         (sum, c) => sum + c.items.reduce((n, i) => n + (i.phones || []).length, 0), 0),
-      trust: totals,
+      verified,
+      unverified: items - verified,
       updated_at: new Date().toISOString(),
     },
   };
@@ -145,9 +119,10 @@ app.get('/', (req, res) => {
     <div style="font-family: sans-serif; padding: 20px;">
       <h1 style="color: #00b8ff;">Smart Vilnohirsk Phonebook API 📖</h1>
       <p>Статус: <b style="color: green;">Работает отлично!</b></p>
-      <p>${m ? `${m.categories} категорий, ${m.items} позиций, ${m.phones} телефонов` : 'Загрузка...'}</p>
+      <p>${m ? `${m.categories} категорий, ${m.items} позиций, ${m.phones} телефонов
+         — проверено ${m.verified}` : 'Загрузка...'}</p>
       <a href="/api/phonebook">Посмотреть данные (JSON)</a> &nbsp;·&nbsp;
-      <a href="/preview">Как выглядят значки доверия</a>
+      <a href="/preview">Предпросмотр справочника</a>
     </div>
   `);
 });
@@ -160,65 +135,147 @@ app.get('/api/phonebook', (req, res) => {
 const escapeHtml = (s) => String(s).replace(/[&<>"]/g,
   (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 
-// Живой предпросмотр: та же вёрстка карточек, что в приложении, но со
-// значками доверия. Нужен, чтобы согласовать дизайн, не собирая фронтенд.
+// Живой предпросмотр: карточки с отметкой проверки, фильтр и поиск.
+// Нужен, чтобы согласовать вид, не пересобирая фронтенд.
 app.get('/preview', (req, res) => {
+  const m = phonebookData.meta || { items: 0, verified: 0, unverified: 0, categories: 0 };
+  const percent = m.items ? Math.round((m.verified / m.items) * 100) : 0;
+
+  const badge = (s) => `<span class="badge" style="color:${s.color};
+      background:${s.background};border-color:${s.border}"
+      title="${escapeHtml(s.hint)}"><i>${s.icon}</i>${escapeHtml(s.label)}</span>`;
+
   const cards = (phonebookData.categories || []).map((category) => `
-    <section class="cat">
-      <h2><span>${escapeHtml(category.icon || '')}</span> ${escapeHtml(category.name)}
-        <em>${category.items.length}</em></h2>
+    <section class="cat" data-name="${escapeHtml(category.name.toLowerCase())}">
+      <h2><span class="ico">${escapeHtml(category.icon || '')}</span>
+        ${escapeHtml(category.name)}<em>${category.items.length}</em></h2>
       <div class="grid">
         ${category.items.map((item) => `
-          <article class="card">
-            <div class="row">
+          <article class="card${item.verified ? ' is-verified' : ''}"
+                   data-verified="${item.verified}"
+                   data-search="${escapeHtml((item.title + ' ' + item.phones.join(' ')).toLowerCase())}">
+            <div class="head">
               <span class="title">${escapeHtml(item.title)}</span>
-              <span class="phones">${item.phones.map((p) =>
-                `<b>${escapeHtml(p)}</b>`).join('')}</span>
+              ${badge(item.status)}
             </div>
-            <span class="badge" style="color:${item.trust.color};border-color:${item.trust.color}33;background:${item.trust.color}14"
-                  title="${escapeHtml(item.trust.hint)}">
-              ${item.trust.icon} ${escapeHtml(item.trust.label)}
-            </span>
+            <div class="phones">${item.phones.map((p) =>
+              `<a href="tel:${escapeHtml(p)}">${escapeHtml(p)}</a>`).join('')}</div>
           </article>`).join('')}
       </div>
     </section>`).join('');
 
-  const legend = Object.values(TRUST_LEVELS).map((t) =>
-    `<span class="badge" style="color:${t.color};border-color:${t.color}33;background:${t.color}14">${t.icon} ${t.label}</span>`).join('');
-
   res.send(`<!doctype html><html lang="uk"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Позначки довіри</title>
+<title>Довідник Вільногірська</title>
 <style>
-  :root { color-scheme: dark; }
-  body { margin:0; padding:24px 16px 64px; background:#0f172a; color:#e2e8f0;
-         font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-  .wrap { max-width: 1100px; margin: 0 auto; }
-  h1 { font-size: 22px; margin: 0 0 4px; }
-  .lead { color:#94a3b8; font-size:14px; margin:0 0 20px; line-height:1.6; }
-  .legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
-  .cat h2 { display:flex; align-items:center; gap:10px; font-size:17px; margin:28px 0 12px; }
-  .cat h2 em { margin-left:auto; font-style:normal; font-size:13px; color:#94a3b8;
-               background:#1e293b; border-radius:999px; padding:2px 10px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:12px; }
-  .card { background:#111c33; border:1px solid #1e293b; border-radius:12px; padding:14px 16px; }
-  .row { display:flex; align-items:center; gap:12px; }
-  .title { font-weight:600; font-size:14px; line-height:1.35; }
-  .phones { margin-left:auto; display:flex; flex-direction:column; gap:4px; text-align:right; }
-  .phones b { color:#4ade80; font-variant-numeric:tabular-nums; border:1px solid #14532d;
-              border-radius:8px; padding:5px 10px; font-size:14px; white-space:nowrap; }
-  .badge { display:inline-flex; align-items:center; gap:5px; margin-top:10px;
-           font-size:12px; font-weight:500; border:1px solid; border-radius:999px; padding:3px 10px; }
-  @media (max-width:520px){ .row{flex-direction:column;align-items:flex-start}
-    .phones{margin-left:0;text-align:left} }
+  :root { color-scheme: dark; --bg:#0b1220; --card:#111c33; --line:#1e2b45;
+          --text:#e6edf7; --mute:#8fa3bf; --ok:#34d399; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:0 0 80px; background:var(--bg); color:var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 16px; }
+
+  header { padding:36px 0 22px; }
+  h1 { font-size:26px; letter-spacing:-.02em; margin:0 0 8px; }
+  .sub { color:var(--mute); font-size:14px; margin:0 0 20px; line-height:1.6; }
+  .sub b { color:var(--ok); font-weight:600; }
+
+  .bar { height:6px; border-radius:99px; background:#16233c; overflow:hidden; margin-bottom:22px; }
+  .bar span { display:block; height:100%; border-radius:99px;
+              background:linear-gradient(90deg,#34d399,#22d3ee); }
+
+  .tools { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+           position:sticky; top:0; z-index:5; padding:12px 0;
+           background:linear-gradient(var(--bg) 70%, transparent); }
+  .chip { border:1px solid var(--line); background:#0f1a2e; color:var(--mute);
+          border-radius:99px; padding:7px 14px; font-size:13px; font-weight:500;
+          cursor:pointer; transition:.15s; }
+  .chip:hover { color:var(--text); border-color:#2b3d5e; }
+  .chip.on { background:rgba(52,211,153,.12); border-color:rgba(52,211,153,.4); color:var(--ok); }
+  input { flex:1; min-width:180px; background:#0f1a2e; border:1px solid var(--line);
+          color:var(--text); border-radius:10px; padding:8px 13px; font-size:14px; outline:none; }
+  input:focus { border-color:#2b3d5e; }
+
+  .cat h2 { display:flex; align-items:center; gap:10px; font-size:16px;
+            letter-spacing:-.01em; margin:30px 0 13px; }
+  .cat h2 .ico { font-size:18px; }
+  .cat h2 em { margin-left:auto; font-style:normal; font-size:12px; color:var(--mute);
+               background:#16233c; border-radius:99px; padding:3px 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px; }
+
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+          padding:15px 16px; transition:.15s; }
+  .card:hover { border-color:#2b3d5e; transform:translateY(-1px); }
+  .card.is-verified { border-color:rgba(52,211,153,.28);
+                      box-shadow: inset 3px 0 0 rgba(52,211,153,.55); }
+  .head { display:flex; align-items:flex-start; gap:10px; margin-bottom:11px; }
+  .title { font-weight:600; font-size:14.5px; line-height:1.4; }
+  .badge { margin-left:auto; flex:none; display:inline-flex; align-items:center; gap:5px;
+           font-size:11.5px; font-weight:600; border:1px solid; border-radius:99px;
+           padding:3px 9px; white-space:nowrap; }
+  .badge i { font-style:normal; font-size:11px; }
+  .phones { display:flex; flex-wrap:wrap; gap:7px; }
+  .phones a { color:#4ade80; text-decoration:none; font-size:14px;
+              font-variant-numeric:tabular-nums; letter-spacing:.02em;
+              border:1px solid rgba(74,222,128,.28); background:rgba(74,222,128,.07);
+              border-radius:9px; padding:6px 11px; transition:.15s; }
+  .phones a:hover { background:rgba(74,222,128,.14); border-color:rgba(74,222,128,.5); }
+
+  .empty { color:var(--mute); font-size:14px; padding:40px 0; text-align:center; display:none; }
+  @media (max-width:560px){ h1{font-size:22px} .grid{grid-template-columns:1fr} }
 </style></head><body><div class="wrap">
-<h1>Позначки довіри біля номерів</h1>
-<p class="lead">Рівень рахується автоматично з даних у phonebook.yaml.
-«Перевірено» ставиться вручну — додайте позиції рядок
-<code>verified_at: "2026-09-19"</code> після того, як номер набрали.</p>
-<div class="legend">${legend}</div>
+<header>
+  <h1>Довідник Вільногірська</h1>
+  <p class="sub">${m.items} контактів у ${m.categories} категоріях.
+     <b>${m.verified} перевірено</b> — це означає, що передзвонили і людина
+     справді цим займається.</p>
+  <div class="bar"><span style="width:${percent}%"></span></div>
+</header>
+
+<div class="tools">
+  <button class="chip on" data-filter="all">Усі · ${m.items}</button>
+  <button class="chip" data-filter="verified">✓ Перевірені · ${m.verified}</button>
+  <button class="chip" data-filter="unverified">Не перевірені · ${m.unverified}</button>
+  <input type="search" placeholder="Пошук за назвою або номером…">
+</div>
+
 ${cards}
-</div></body></html>`);
+<p class="empty">Нічого не знайшли.</p>
+</div>
+<script>
+  const chips = document.querySelectorAll('.chip');
+  const search = document.querySelector('input');
+  const cards = [...document.querySelectorAll('.card')];
+  const cats = [...document.querySelectorAll('.cat')];
+  const empty = document.querySelector('.empty');
+  let filter = 'all';
+
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach((card) => {
+      const byState = filter === 'all' || card.dataset.verified === String(filter === 'verified');
+      const byText = !q || card.dataset.search.includes(q);
+      const ok = byState && byText;
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    cats.forEach((cat) => {
+      const any = [...cat.querySelectorAll('.card')].some((c) => c.style.display !== 'none');
+      cat.style.display = any ? '' : 'none';
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.toggle('on', c === chip));
+    filter = chip.dataset.filter;
+    apply();
+  }));
+  search.addEventListener('input', apply);
+</script>
+</body></html>`);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
