@@ -1,484 +1,694 @@
+# Довідник Вільногірська.
+#
+# У кожної позиції є рівно одне поле стану:
+#
+#   verified: true   ✓ Перевірено — передзвонили і підтвердили, що людина
+#                      або заклад справді цим займається.
+#   verified: false  ○ Не перевірено — номер є, але ніхто його не підтверджував.
+#
+# Щоб підтвердити номер — змініть false на true. Більше нічого робити не треба.
+# За бажанням можна дописати, хто і коли перевіряв:
+#   verified: true
+#   verified_at: "2026-09-19"
+#   verified_by: "Денис"
+
 categories:
   - name: "Екстренні та безпека"
     icon: "🚨"
     items:
       - title: "Вільногірське відділення поліції"
         phones: ["0689230402", "0504563958"]
+        verified: true
       - title: "Військовий комісаріат"
         phones: ["0983162061"]
+        verified: true
 
   - name: "Медицина"
     icon: "🏥"
     items:
       - title: "Вільногірська ЦМЛ (Лікарня)"
         phones: ["0682680116"]
+        verified: true
       - title: "КП «Вільногірський МЦ ПМСД»"
         phones: ["0964226644"]
+        verified: true
       - title: "Амбулаторія №2 КП"
         phones: ["0962285047"]
+        verified: true
       - title: "Стоматологічне відділення ЦМЛ"
         phones: ["0972272546"]
+        verified: true
       - title: "Бюро судово-медичної експертизи"
         phones: ["0966346787"]
+        verified: true
       - title: "Державна лікарня ветеринарної медицини"
         phones: ["0676829668"]
+        verified: true
       - title: "Стоматологія біля нового ринку"
         phones: ["0679419199"]
+        verified: true
       - title: "Стоматолог Гладков"
         phones: ["0973848399"]
+        verified: true
       - title: "Стоматологія (Нова лікарня)"
         phones: ["0972272546"]
+        verified: true
       - title: "Стоматолог Панін Віталій Ігорович"
         phones: ["0972272546"]
+        verified: true
       - title: "Стоматолог Василенко Тетяна Олександрівна"
         phones: ["0976678902"]
+        verified: true
       - title: "Стоматолог Данелюк Борис Олександрович"
         phones: ["0976137082"]
+        verified: true
       - title: "Стоматологія Dentakary (15 бульвар)"
         phones: ["0682020320"]
+        verified: true
       - title: "Стоматолог Ірина Леонідівна (вул. Захисників України, 12а)"
         phones: ["0677141896"]
+        verified: true
       - title: "Клініка «Є Лікар» — реєстратура (навпроти технікуму)"
         phones: ["0979414248", "0664512023"]
+        verified: false
       - title: "Приймальний покій нової лікарні"
         phones: ["0675668051"]
+        verified: false
       - title: "Терапевтичне відділення нової лікарні"
         phones: ["0967603315"]
+        verified: false
       - title: "Сімейний лікар Сіденко О. В."
         phones: ["0679042701"]
+        verified: false
       - title: "Сімейний лікар Усенко Олена Владиславівна"
         phones: ["0988227697"]
+        verified: false
       - title: "Лікар Фільова Олена Олександрівна"
         phones: ["0984920304"]
+        verified: false
       - title: "Хірург Нетребенко М. М."
         phones: ["0987094641"]
+        verified: false
       - title: "Аптека «Фармація» (у новій лікарні)"
         phones: ["0675550231", "0970728964"]
+        verified: false
       - title: "УЗД — Ірина (Верхньодніпровськ)"
         phones: ["0981270452"]
+        verified: false
       - title: "Реєстратура лікарні, Верхньодніпровськ"
         phones: ["0934944771"]
+        verified: false
       - title: "Реєстратура лікарні, П'ятихатки"
         phones: ["0986115996", "0981085548"]
+        verified: false
       - title: "Офтальмологічне відділення, Кам'янське"
         phones: ["0737775161"]
+        verified: false
 
   - name: "Ветеринарія"
     icon: "🐾"
     items:
       - title: "Ветеринар-хірург Андрій Михайлович"
         phones: ["0503420604"]
+        verified: false
       - title: "Уколи та крапельниці тваринам — Оля"
         phones: ["0688832551"]
+        verified: false
       - title: "Ветеринар Зоя Борисівна (П'ятихатки)"
         phones: ["0973886550"]
+        verified: false
       - title: "Ветклініка «Єнот» (Жовті Води)"
         phones: ["0953166140"]
+        verified: false
       - title: "Ветклініка «Чотири Лапи» (Жовті Води)"
         phones: ["0669332181"]
+        verified: false
       - title: "Стрижка собак — Наталія"
         phones: ["0679615318"]
+        verified: false
 
   - name: "Комунальні служби"
     icon: "🛠️"
     items:
       - title: "«Газмережі»"
         phones: ["0983002888", "0933002888"]
+        verified: true
       - title: "Вільногірські розподільні електричні мережі (ЦЕК)"
         phones: ["0674825019"]
+        verified: true
       - title: "КП «УК «Жилкомсервіс»"
         phones: ["0975948695"]
+        verified: true
       - title: "КП «Жилсервіс»"
         phones: ["0565335135"]
+        verified: true
       - title: "КП «Аварійна служба»"
         phones: ["0676417910"]
+        verified: true
       - title: "Збут холодної води (передача показників, прийом 1–5 числа)"
         phones: ["0686309011", "0506157933"]
+        verified: false
       - title: "Передача показників газового лічильника (потрібен особовий рахунок)"
         phones: ["0800303104"]
+        verified: false
       - title: "ЦЕК Вільногірськ — гаряча лінія"
         phones: ["0800300015"]
+        verified: false
       - title: "Гаряча лінія електропостачання"
         phones: ["0800301568", "0637909900"]
+        verified: false
       - title: "Викачування вигрібних ям"
         phones: ["0974969692"]
+        verified: false
 
   - name: "Державні установи"
     icon: "🏛️"
     items:
       - title: "ЦНАП м. Вільногірськ"
         phones: ["0672110082"]
+        verified: true
       - title: "Виконавчий комітет міської ради"
         phones: ["0672110208", "0800300172"]
+        verified: true
       - title: "Вільногірський міський суд"
         phones: ["0565341179"]
+        verified: true
       - title: "Сектор ГУ ДМС (Паспортний)"
         phones: ["0964957930"]
+        verified: true
       - title: "Управління Пенсійного фонду"
         phones: ["0951533887", "0972980143"]
+        verified: true
       - title: "Департамент соціально-гуманітарної політики"
         phones: ["0661163476"]
+        verified: true
       - title: "Управління соціального захисту (Собез)"
         phones: ["0637686195"]
+        verified: false
       - title: "Відділ соціальних виплат (у 5-му садочку)"
         phones: ["0979336199"]
+        verified: false
       - title: "Служба у справах дітей"
         phones: ["0971551456"]
+        verified: true
       - title: "Міський центр зайнятості"
         phones: ["0676348851"]
+        verified: true
       - title: "Державна нотаріальна контора"
         phones: ["0565352760"]
+        verified: true
       - title: "Вільногірський РАЦС (ЗАГС)"
         phones: ["0567672085"]
+        verified: false
       - title: "РАЦС (ЗАГС), П'ятихатки"
         phones: ["0567672126"]
+        verified: false
       - title: "БТІ"
         phones: ["0679945190"]
+        verified: false
       - title: "Черговий по ТЦК (Верхньодніпровськ)"
         phones: ["0677253096"]
+        verified: false
 
   - name: "Освітні заклади"
     icon: "🎓"
     items:
       - title: "Вільногірський фаховий коледж"
         phones: ["0565351546"]
+        verified: true
       - title: "ДПТНЗ «Західно-Дніпровський центр ПТО»"
         phones: ["0689657240"]
+        verified: true
       - title: "Ліцей №2"
         phones: ["0970884363"]
+        verified: true
       - title: "Ліцей №3"
         phones: ["0980432212"]
+        verified: true
       - title: "Ліцей №4"
         phones: ["0673163304"]
+        verified: true
       - title: "Ліцей №5"
         phones: ["0930365431", "0689528669"]
+        verified: true
 
   - name: "Дитячі садки"
     icon: "🧸"
     items:
       - title: "ЦРД №2 “Веселі дзвіночки”"
         phones: ["0975262203", "0950249083"]
+        verified: true
       - title: "ДНЗ №3 “Веселка”"
         phones: ["0966054126"]
+        verified: true
       - title: "ДНЗ №4 «Ромашка»"
         phones: ["0676355444"]
+        verified: true
       - title: "ДНЗ №6 “Сонечко”"
         phones: ["0963761655"]
+        verified: true
       - title: "ДНЗ №8 “Білочка”"
         phones: ["0686577316", "0986348849"]
+        verified: true
 
   - name: "Таксі"
     icon: "🚕"
     items:
       - title: "Таксі OnTaxi"
         phones: ["2000"]
+        verified: false
       - title: "Таксі «Марсель»"
         phones: ["0980110119"]
+        verified: true
       - title: "Таксі «Люкс»"
         phones: ["0973393333"]
+        verified: true
       - title: "Таксі «Інтер»"
         phones: ["0678027067"]
+        verified: true
       - title: "Таксі «Нова»"
         phones: ["0675236727"]
+        verified: true
       - title: "Таксі «Флеш»"
         phones: ["0985872726"]
+        verified: true
       - title: "Таксі «Еліт»"
         phones: ["0684054460"]
+        verified: true
       - title: "Таксі «GOLD»"
         phones: ["0965227645"]
+        verified: true
       - title: "Вантажне таксі"
         phones: ["0675234373"]
+        verified: false
       - title: "Вантажне таксі на Дніпро — Сергій"
         phones: ["0670103853"]
+        verified: false
 
   - name: "Перевезення"
     icon: "🚚"
     items:
       - title: "Вантажні перевезення з вантажниками — Олександр"
         phones: ["0976516580"]
+        verified: false
       - title: "Вантажні перевезення — Сергій"
         phones: ["0968573092"]
+        verified: false
       - title: "Вантажні перевезення та вантажники — Сергій"
         phones: ["0989914141"]
+        verified: false
       - title: "Вантажні перевезення — Дмитро"
         phones: ["0988897804"]
+        verified: false
       - title: "Вантажні перевезення"
         phones: ["0682664686"]
+        verified: false
       - title: "Евакуатор — Саня"
         phones: ["0686930234"]
+        verified: false
       - title: "Маршрутка Вільногірськ — Дніпро (водій)"
         phones: ["0968223601"]
+        verified: false
       - title: "Маршрутка на Лихівку (водій)"
         phones: ["0975498025"]
+        verified: false
       - title: "Маршрутка до Кривого Рогу"
         phones: ["0759757260"]
+        verified: false
       - title: "Автовокзал, Дніпро"
         phones: ["0503121110"]
+        verified: false
       - title: "Залізничний вокзал, Дніпро"
         phones: ["0567934826"]
+        verified: false
 
   - name: "Авто"
     icon: "🚗"
     items:
       - title: "Автоелектрик, автоключник — Сергій"
         phones: ["0967839583"]
+        verified: false
       - title: "Автоелектрик — Миша Литвин"
         phones: ["0984650626"]
+        verified: false
       - title: "Автоелектрик — Діма"
         phones: ["0976361662"]
+        verified: false
       - title: "Ремонт карбюраторів — Васильович"
         phones: ["0986355811"]
+        verified: false
       - title: "Ремонт автомобілів — Лінєнко"
         phones: ["0673401414"]
+        verified: false
       - title: "Заміна лобового скла"
         phones: ["0674106061"]
+        verified: false
       - title: "Автомийка (на виїзді)"
         phones: ["0973587131"]
+        verified: false
       - title: "Магазин автомобільних шин (біля бані та старого ринку)"
         phones: ["0985405405"]
+        verified: false
       - title: "Автошкола"
         phones: ["0680306359"]
+        verified: false
 
   - name: "Електрика та сантехніка"
     icon: "💡"
     items:
       - title: "Електрик — Андрій"
         phones: ["0983502290"]
+        verified: false
       - title: "Електрик — Володимир"
         phones: ["0982079391", "0982049391"]
+        verified: false
       - title: "Електрик (люстри, розетки, вимикачі)"
         phones: ["0971364157"]
+        verified: false
       - title: "Електрики («Альтаір», 2-й поверх, ліве крило)"
         phones: ["0956535200"]
+        verified: false
       - title: "Перенесення електролічильника із заміною пломб — Олександр"
         phones: ["0962259056"]
+        verified: false
       - title: "Сантехнік Віталій"
         phones: ["0987063967"]
+        verified: false
       - title: "Сантехніка, опалення, пайка труб — Юра Черниш"
         phones: ["0964030713"]
+        verified: false
       - title: "Сантехнік"
         phones: ["0974056644"]
+        verified: false
 
   - name: "Газ та опалення"
     icon: "🔥"
     items:
       - title: "Ремонт газових котлів — Петро"
         phones: ["0679850679"]
+        verified: false
       - title: "«Укрдемсервіс» — газові котли"
         phones: ["0675604883"]
+        verified: false
       - title: "Встановлення газового опалення — Максим"
         phones: ["0987871145"]
+        verified: false
       - title: "Майстер з газових плит — Володя"
         phones: ["0987673554"]
+        verified: false
 
   - name: "Ремонт техніки"
     icon: "🔧"
     items:
       - title: "Ремонт пральних машин — Олександр"
         phones: ["0977072464"]
+        verified: false
       - title: "Ремонт пральних машин — Едуард"
         phones: ["0989659251"]
+        verified: false
       - title: "Ремонт холодильників — Олександр"
         phones: ["0675664551"]
+        verified: false
       - title: "Ремонт холодильників — Руслан"
         phones: ["0965244100"]
+        verified: false
       - title: "Ремонт холодильників і пральних машин"
         phones: ["0687992061"]
+        verified: false
       - title: "Ремонт генераторів — Роман"
         phones: ["0980077902"]
+        verified: false
       - title: "Ремонт телевізорів — Єгор"
         phones: ["0967839818"]
+        verified: false
       - title: "Ремонт годинників — Віктор"
         phones: ["0967854175"]
+        verified: false
       - title: "Ремонт швейних машин — Олександр Михайлович"
         phones: ["0671668771"]
+        verified: false
       - title: "Ремонт швейних машин"
         phones: ["0688688652"]
+        verified: false
       - title: "Встановлення кондиціонерів — Жорик"
         phones: ["0976861849"]
+        verified: false
       - title: "Чистка кондиціонерів — Сергій"
         phones: ["0673237171"]
+        verified: false
       - title: "Ювелір Костя (паяння золота)"
         phones: ["0981207008"]
+        verified: false
       - title: "Ювелір"
         phones: ["0686685520"]
+        verified: false
       - title: "«Терабайт» — комп'ютерна техніка"
         phones: ["0956448994"]
+        verified: false
       - title: "Опресування наконечників гідравлічним пресом — Крюков"
         phones: ["0672003420"]
+        verified: false
 
   - name: "Будівництво та ремонт"
     icon: "🧱"
     items:
       - title: "Перетяжка москітних сіток — Володимир"
         phones: ["0672548620"]
+        verified: false
       - title: "Перетяжка меблів — Андрій"
         phones: ["0671461048"]
+        verified: false
       - title: "Перетяжка диванів"
         phones: ["0679150964"]
+        verified: false
       - title: "Виготовлення корпусних меблів — Олександр"
         phones: ["0975797145"]
+        verified: false
       - title: "Виготовлення меблів"
         phones: ["0675607525"]
+        verified: false
       - title: "Столяр Толя"
         phones: ["0987540875"]
+        verified: false
       - title: "Зварювальні роботи"
         phones: ["0987445640"]
+        verified: false
       - title: "Зварювальник"
         phones: ["0967473071"]
+        verified: false
       - title: "Виготовлення воріт — Олександр"
         phones: ["0967354368"]
+        verified: false
       - title: "Виготовлення воріт — Серьога Процан"
         phones: ["0975242777"]
+        verified: false
       - title: "Шпаклювання стін — Аня"
         phones: ["0988678635"]
+        verified: false
       - title: "Відкоси на вікнах"
         phones: ["0680052500"]
+        verified: false
       - title: "Натяжні стелі — Олександр"
         phones: ["0987172363"]
+        verified: false
       - title: "Утеплення фасадів"
         phones: ["0981669966"]
+        verified: false
       - title: "Висотні роботи, ремонт даху"
         phones: ["0980847526"]
+        verified: false
       - title: "Демонтажні роботи — Юра"
         phones: ["0967839943"]
+        verified: false
       - title: "Пічник Владислав"
         phones: ["0506300772"]
+        verified: false
       - title: "Пічник"
         phones: ["0965812073"]
+        verified: false
       - title: "Ремонт домофонів і під'їзних дверей (Кам'янське)"
         phones: ["0982416145"]
+        verified: false
       - title: "Оранка городу мотоблоком — Володимир"
         phones: ["0971815747"]
+        verified: false
 
   - name: "Побутові послуги"
     icon: "🧺"
     items:
       - title: "Прання килимів, хімчистка"
         phones: ["0509528139"]
+        verified: false
       - title: "Прання килимів"
         phones: ["0988627302"]
+        verified: false
       - title: "Пральня (вул. Захисників, гуртожиток)"
         phones: ["0983363735"]
+        verified: false
       - title: "Клінінг «Чистюля» Вільногірськ"
         phones: ["0505607927"]
+        verified: false
       - title: "Чистка та реставрація подушок (щодня, крім неділі)"
         phones: ["0965068636"]
+        verified: false
       - title: "Чистка подушок"
         phones: ["0962460646"]
+        verified: false
       - title: "Ремонт взуття, виготовлення ключів (б. Миру, 11)"
         phones: ["0962087133"]
+        verified: false
       - title: "Швець"
         phones: ["0973809417"]
+        verified: false
       - title: "Фотограф «Кодак» (11 бульвар)"
         phones: ["0674594258"]
+        verified: false
       - title: "Ритуальні послуги — Вікторія"
         phones: ["0973737676"]
+        verified: false
       - title: "Ритуальні послуги (вул. Привокзальна)"
         phones: ["0963797878"]
+        verified: false
       - title: "Ритуальні послуги (біля «Варуса»)"
         phones: ["0679323640"]
+        verified: false
       - title: "Баня (колишня «Петровича»)"
         phones: ["0679677536"]
+        verified: false
       - title: "Конюшня, верхова їзда"
         phones: ["0678110931"]
+        verified: false
       - title: "Червоний Хрест (приймання речей)"
         phones: ["0675521566"]
+        verified: false
       - title: "Батюшка, церква на 15 бульварі"
         phones: ["0969202017"]
+        verified: false
 
   - name: "Юристи та нотаріуси"
     icon: "⚖️"
     items:
       - title: "Приватний нотаріус Жиганова Лариса Сергіївна (бульвар)"
         phones: ["0952555380"]
+        verified: false
       - title: "Нотаріус (бульв. Миру, 15)"
         phones: ["0685176119"]
+        verified: false
       - title: "Нотаріус, Кам'янське"
         phones: ["0685878335"]
+        verified: false
       - title: "Адвокат Точілін Микита"
         phones: ["0984386655"]
+        verified: false
       - title: "Адвокат Шевчук Олег Мануїлович"
         phones: ["0936460766"]
+        verified: false
       - title: "Адвокат (Вільногірськ)"
         phones: ["0966405043"]
+        verified: false
 
   - name: "Інтернет та зв'язок"
     icon: "📶"
     items:
       - title: "«Медіаком» — офіс"
         phones: ["0679097911"]
+        verified: false
       - title: "«Медіаком» — технічна підтримка"
         phones: ["0687303030"]
+        verified: false
       - title: "Київстар — технічна підтримка"
         phones: ["0800300460", "0800300466"]
+        verified: false
       - title: "Магазин Київстар"
         phones: ["0675775757"]
+        verified: false
       - title: "Укртелеком — гаряча лінія"
         phones: ["0800506800"]
+        verified: false
 
   - name: "Магазини"
     icon: "🛒"
     items:
       - title: "Магазин «Гранд» — відділ друку та копій (Наталія)"
         phones: ["0979636152"]
+        verified: false
       - title: "Магазин «Руді»"
         phones: ["0675457575"]
+        verified: false
       - title: "Магазин «Домовик» — Олеся"
         phones: ["0672881138"]
+        verified: false
       - title: "Магазин «Три Кіти» — власник"
         phones: ["0971200478"]
+        verified: false
 
   - name: "Кафе та їжа"
     icon: "🍕"
     items:
       - title: "Піцерія «Маркетопт»"
         phones: ["0986730733"]
+        verified: false
       - title: "Кафе «Петрович»"
         phones: ["0681440933"]
+        verified: false
       - title: "Бургерна"
         phones: ["0507294728", "0681001451"]
+        verified: false
 
   - name: "Доставка"
     icon: "📦"
     items:
       - title: "Дрова з доставкою"
         phones: ["0672244141", "0682426324"]
+        verified: false
       - title: "Дрова — Юра"
         phones: ["0684552764"]
+        verified: false
       - title: "Доставка питної води"
         phones: ["0985304054"]
+        verified: false
 
   - name: "Страхування"
     icon: "🛡️"
     items:
       - title: "Страхова компанія («Альтаір») — Аліна"
         phones: ["0677514648"]
+        verified: false
       - title: "СК «Авангард»"
         phones: ["0962584904"]
+        verified: false
       - title: "СК «FORMA»"
         phones: ["0681090929"]
+        verified: false
 
   - name: "Прийом вторсировини"
     icon: "♻️"
     items:
       - title: "Прийом металобрухту — Володимир"
         phones: ["0989173536"]
+        verified: false
       - title: "Прийом металобрухту — Володимир (другий пункт)"
         phones: ["0678559472"]
+        verified: false
       - title: "Прийом металобрухту (виїзд на Лихівку)"
         phones: ["0673059800"]
+        verified: false
       - title: "Приймання макулатури (за новим ринком)"
         phones: ["0972732474"]
+        verified: false
 
   - name: "Інше"
     icon: "📌"
     items:
       - title: "Укрпошта Вільногірська"
         phones: ["0565351636", "0501608388"]
+        verified: true
       - title: "КЗ спортивний комплекс «Авангард»"
         phones: ["0677249815"]
+        verified: true
       - title: "Рада ветеранів"
         phones: ["0565352799"]
+        verified: true
       - title: "Відділ кадрів ГМК"
         phones: ["0952300882"]
+        verified: false
